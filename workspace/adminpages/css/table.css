@@ -1,21 +1,10 @@
-th, tbody {
-	font-size: 13px;
-
-
+th {
+	color: white;
+	font-weight: bold;
+	
 }
 
 
+	
 
-
-
-#edit {
-
-text-align: left;
-}
-
-#delete {
-	text-align: right;
-
-
-}
 

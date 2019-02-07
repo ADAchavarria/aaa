@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require_once("../connect.php");
 
 ?>
@@ -20,7 +20,7 @@ require_once("../connect.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Tables</title>
+    <title>Tabelas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,14 @@ require_once("../connect.php");
 
     <link rel="stylesheet" type="text/css" href="css/modalDelete.css">
 
+
+    <link href="css/logonav.css" rel="stylesheet">
+
+    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 
 
 
@@ -61,7 +68,7 @@ require_once("../connect.php");
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" ><img src="imgs/logo.png" class="logo"></a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -70,41 +77,17 @@ require_once("../connect.php");
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
+          
+              
+            
           </div>
         </div>
       </form>
 
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-bell fa-fw"></i>
-            <span class="badge badge-danger">9+</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-envelope fa-fw"></i>
-            <span class="badge badge-danger">7</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+        
+        
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
@@ -124,26 +107,17 @@ require_once("../connect.php");
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="plantas.php">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-tree"></i>
             <span>Plantas</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-        </li>
+        
         <li class="nav-item active">
           <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>Tabelas</span></a>
         </li>
       </ul>
 
@@ -154,9 +128,9 @@ require_once("../connect.php");
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <b>TABELAS</b>
             </li>
-            <li class="breadcrumb-item active">Tables</li>
+            
           </ol>
 
 
@@ -269,13 +243,15 @@ while($row = mysqli_fetch_array($result))
       <div class="modal-dialog">  
            <div class="modal-content">  
                 <div class="modal-header">  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                     <h4 class="modal-title">Info Plantas</h4>  
+                       
+                     <h4 class="modal-title" style="color: green;">Informação da Planta</h4>  
                 </div>  
                 <div class="modal-body" id="planta_detalhe">  
                 </div>  
-                <div class="modal-footer">  
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                <div class="modal-footer"> 
+                     
+                      <button type="button" class="btn btn-primary" id="imprimir">Imprimir</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>  
                 </div>  
            </div>  
       </div>  
@@ -289,66 +265,83 @@ while($row = mysqli_fetch_array($result))
 
 
 
- <div id="add_data_Modal" class="modal fade" tabindex="-1" role="dialog" id="myModal">
+ <div id="add_data_Modal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         
-        <h4 class="modal-title" id="tituloModal" name="tituloModal"></h4>
+        
+        <h4 class="modal-title" style="color: green;" id="tituloModal" name="tituloModal"></h4>
         <input type="hidden" name="titulo1" id="tituloInput">
       </div>
       <div class="modal-body">
+
+        <div class="table-responsive">  
+           <table class="table table-bordered">
+                <tr>
         
                   <div class="form-group">
-                  <label>Nome Comum</label>
-                  <p id="nomeComumModal" name="nomeComum" ></p>
-                  <input type="hidden" name="nomeComum1" id="nomeComumInput"></input>
-                  <hr>
+                  <td width="30%"><b>Nome Comum:</b></td>
+                  <td width="70%"><p id="nomeComumModal" name="nomeComum" ></p>
+                  <input type="hidden" name="nomeComum1" id="nomeComumInput"></input></td>
+                  
                   
               </div>
+              </tr>
+              <tr>
               <div class="form-group">
-                  <label>Espécie</label>
-                  <p id="especieModal" name="especie" ></p>
-                  <input type="hidden" name="especie1" id="especieInput"></input>
-                  <hr>
+                  <td width="30%"><b>Espécie:</b></td>
+                  <td  width="70%"><p id="especieModal" name="especie" ></p>
+                  <input type="hidden" name="especie1" id="especieInput"></input></td>
+                 
               </div>
+              </tr>
+              <tr>
               <div class="form-group">
-                  <label>Família</label>
-                  <p id="familiaModal" name="familia" ></p>
-                  <input type="hidden" name="familia1" id="familiaInput"></input>
-                  <hr>
+                  <td width="30%"><b>Família:</b></td>
+                  <td width="70%"><p id="familiaModal" name="familia" ></p>
+                  <input type="hidden" name="familia1" id="familiaInput"></input></td>
+                
                   
               </div>
+              </tr>
+              <tr>
               <div class="form-group">
-                  <label>Ordem</label>
-                  <p id="ordemModal" name="ordem"></p>
-                  <input type="hidden" name="ordem1" id="ordemInput"></input>
-                  <hr>
+                 <td width="30%"> <b>Ordem:</b></td>
+                  <td width="70%"> <p id="ordemModal" name="ordem"></p>
+                  <input type="hidden" name="ordem1" id="ordemInput"></input></td>
+                 
               </div>
+              </tr>
+              <tr>
               <div class="form-group">
-                  <label>Fotos</label>
-                  <p id="fotosModal" name="fotosUrl"  ></p>
-                  <input type="hidden" name="fotos1" id="fotosInput"></input>
-                  <hr>
+                 <td width="30%"> <b>Fotos:</b></td>
+                 <td width="70%"> <div id="fotosModal" name="fotosUrl"  ></div>
+                  <input type="hidden" name="fotos1" id="fotosInput"></input></td>
+                 
                  
 
 
               </div>
-              
+              </tr>
+              <tr>
                <div class="form-group">
-                  <label>QR Code</label>
-                  <p id="qrCodeModal" name="qrcode"  ></p>
-                  <input type="hidden" name="qrcode1" id="qrcodeInput"></input>
+                 <td width="30%" > <b>Qr Code:</b></td>
+                 <td width="70%"> <p id="qrCodeModal" name="qrcode"  ></p>
+                  <input type="hidden" name="qrcode1" id="qrcodeInput"></input></td>
               </div>
-
+              </tr>
+            <tr>
               <div class="form-group">
-                  <label>Descrição</label>
+                  <td width="30%"><b>Descrição:</b></td>
                   
-                  <textarea id="contentModal" name="descricao" style="min-width: 100%"></textarea>
+                  <td width="70%"><textarea id="contentModal" name="descricao" style="min-width: 100%" class="form-control"  rows="10"></textarea></td>
                   
 
               </div>
+            </tr>
+              </table>  
+      </div>
               
               <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
             
@@ -431,7 +424,7 @@ while($row = mysqli_fetch_array($result))
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="../logout.php">Logout</a>
           </div>
         </div>
       </div>

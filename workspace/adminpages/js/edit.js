@@ -22,20 +22,18 @@ $(document).ready(function(){
                     $("#nomeComumInput").val(res.nomeComum);
                     $("#tituloModal").html(res.especie);
                     $("#tituloInput").val(res.especie);
-                    $.each(res['imagens'], function( index, value ){
-                            $("#fotosModal").append("<img style ='width:100px' src='"+value+"' />");
+                    $("#fotosModal").html(res.fotosURL);
                             $("#fotosInput").val(res.fotosURL);
-                    });
+                    
                     $('#insert').val("Update");  
                     $('#add_data_Modal').modal('show');  
 
 
                 }  
-           });  
-      });
+           }); 
 
-  
-  $('#insert').on("click", function(event){
+
+           $('#insert').on("click", function(event){
     
 
 
@@ -62,7 +60,11 @@ $(document).ready(function(){
                   window.location.replace("/workspace/adminpages/tables.php");
 
                 
-          });
+          }); 
+      });
+
+  
+  
       
   
 });

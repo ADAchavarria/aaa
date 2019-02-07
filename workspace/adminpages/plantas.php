@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Dashboard</title>
+    <title>Plantas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,6 +34,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/modalAdd.css" rel="stylesheet">
+
+    <link href="css/logonav.css" rel="stylesheet">
 
   </head>
 
@@ -49,7 +52,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" ><img src="imgs/logo.png" class="logo"></a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -58,11 +61,8 @@
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-success" type="button">
-              <i class="fas fa-search"></i>
-            </button>
+          
+            
           </div>
         </div>
       </form>
@@ -94,27 +94,17 @@
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item ">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
+        
         
         <li class="nav-item active">
           <a class="nav-link" href="plantas.php">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-tree"></i>
             <span>Plantas</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>Tabelas</span></a>
         </li>
       </ul>
 
@@ -134,87 +124,111 @@
           <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fas fa-chart-area"></i>
+              <i class="fas fa-tree"></i>
               Adicionar Plantas</div>
             <div class="card-body">
               <div class="form-group">
-                  <label>Nome Cientifico da planta:</label>
+                  <label>Introduza o <strong> nome da espécie:</strong></label>
                       
 
-                  <form class="form-inline"  method="GET" id="myForm">
-                        <input type="text" placeholder="Pesquise as suas plantas.." name="search" id="searchPlanta">
-                        <button id="add" data-target="#add_data_Modal" type="submit" class="btn btn-primary">Submit</button>
+                  <form class="form"  method="GET" id="myForm">
+                        <input type="text" style="width:40%" placeholder="Pesquise aqui as plantas que pretende adicionar..." name="search" id="searchPlanta">
+                        <p></p>
+                        <button id="add" data-target="#add_data_Modal" type="submit" class="btn btn-primary" >Procurar Informação</button>
                   </form>
+
+
+
+
+
+<!--Insert Modal-->
+
 
   <div id="add_data_Modal" class="modal fade" tabindex="-1" role="dialog" id="myModal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        
         <form method="post" name="insert_form" id="insert_form">
-        <h4 class="modal-title" id="tituloModal" name="tituloModal"></h4>
+        <h4 class="tittle" style="color: green;" id="tituloModal"  name="tituloModal"></h4>
         <input type="hidden" name="titulo1" id="tituloInput">
+        
       </div>
       <div class="modal-body">
-        
+
+        <div class="table-responsive">  
+           <table class="table table-bordered">
+                <tr>
                   <div class="form-group">
-                  <label>Nome Comum</label>
-                  <p id="nomeComumModal" name="nomeComum" ></p>
-                  <input type="hidden" name="nomeComum1" id="nomeComumInput"></input>
-                  <hr>
+                  <td><b>Nome Comum:</b></td>
+                  <td><p id="nomeComumModal" name="nomeComum" ></p>
+                  <input type="hidden" name="nomeComum1" id="nomeComumInput"></input></td>
+                  
                   
               </div>
+            </tr>
+              <tr>
               <div class="form-group">
-                  <label>Espécie</label>
-                  <p id="especieModal" name="especie" ></p>
-                  <input type="hidden" name="especie1" id="especieInput"></input>
-                  <hr>
-              </div>
-              <div class="form-group">
-                  <label>Família</label>
-                  <p id="familiaModal" name="familia" ></p>
-                  <input type="hidden" name="familia1" id="familiaInput"></input>
-                  <hr>
+                  <td><b>Espécie:</b></td>
+                  <td><p id="especieModal" name="especie" ></p>
+                  <input type="hidden" name="especie1" id="especieInput"></input></td>
                   
               </div>
+            </tr>
+              <tr>
               <div class="form-group">
-                  <label>Ordem</label>
-                  <p id="ordemModal" name="ordem"></p>
-                  <input type="hidden" name="ordem1" id="ordemInput"></input>
-                  <hr>
-              </div>
-              <div class="form-group">
-                  <label>Fotos</label>
-                  <div id="fotosModal" name="fotosUrl"  ></div>
+                  <td width="30%"><b>Família:</b></td>
+                  <td width="70%"><p id="familiaModal" name="familia" ></p>
+                  <input type="hidden" name="familia1" id="familiaInput"></input></td>
                   
-                  <hr>
-                 
+                  
+              </div>
+            </tr>
+              <tr>
+              <div class="form-group">
+                  <td width="30%"><b>Ordem:</b></td>
+                 <td width="70%"><p id="ordemModal" name="ordem"></p>
+                  <input type="hidden" name="ordem1" id="ordemInput"></input></td>
+              </div>
+            </tr>
+              <tr>
+              <div class="form-group">
+                  <td width="30%"><b>Fotos:</b></td>
+                  <td width="70%"><div id="fotosModal" name="fotosUrl"  ></div></td>
+              </div>
+            </tr>
 
 
-              </div>
-              
+              <tr>
                <div class="form-group">
-                  <label>QR Code</label>
-                  <p id="qrCodeModal" name="qrcode"  ></p>
-                  <input type="hidden" name="qrcode1" id="qrcodeInput"></input>
+                  <td width="30%"><b>Qr Code:</b></td>
+                  <td width="70%"><p id="qrCodeModal" name="qrcode"  ></p>
+                  <input type="hidden" name="qrcode1" id="qrcodeInput"></input></td>
               </div>
+            </tr>
 
+             <tr>
               <div class="form-group">
-                  <label>Descrição</label>
-                  <p id="contentModal" name="descricao"></p>
-                  <input type="hidden" name="descricao1" id="descricaoInput"></input>
+                  <td width="30%"><b>Descrição:</b></td>
+                  <td width="70%"><p id="contentModal" name="descricao"></p>
+                  <input type="hidden" name="descricao1" id="descricaoInput"></input></td>
 
               </div>
+            </tr>
+
+          </table>  
+      </div>
               <input type="hidden" name="employee_id" id="employee_id" />  
               <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
                       
 
 
@@ -258,7 +272,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="../logout.php">Logout</a>
           </div>
         </div>
       </div>

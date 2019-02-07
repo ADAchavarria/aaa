@@ -43,7 +43,11 @@
       }  
       $output .= '  
            </table>  
-      </div>  
+      </div>
+      
+                            
+                            
+        
       ';  
       echo $output;  
  }  

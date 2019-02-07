@@ -12,11 +12,36 @@ $(document).ready(function(){
                           $('#planta_detalhe').html(data);  
                           $('#dataModal').modal('show');  
                      }  
-                });  
-           }            
-      });
-});	
+                });
 
+          }
+          $(document).on('click', '#imprimir', function(){
+    
+
+
+                  $.ajax({  
+                     url:"pdff.php",  
+                     method:"POST",  
+                     data:{
+                      
+                      nomeCientifico: nomeCientifico
+                      
+
+                     }, 
+                     dataType: "JSON"
+                     
+                     
+                
+                     
+                          
+                     
+          });
+                             
+      });
+
+ 
+});	
+});
 
 
 

@@ -3,9 +3,15 @@
 $db = new PDO('mysql:host=localhost;dbname=plantal','root','');
      require "fpdf.php";
 
+
+$planta = ($_POST["nomeCientifico"]);        
+               
+          
+     
      
 
-          class myPDF extends FPDF{
+
+class myPDF extends FPDF{
                function headerTable(){
                     $this->SetFont('Times','B',12);
 
@@ -14,10 +20,10 @@ $db = new PDO('mysql:host=localhost;dbname=plantal','root','');
                     $this->Ln();
                }
 
-               function viewTable($db){
+               function viewTable($db, $planta){
                     $this->SetFont('Times','B',12);
-                    
-                    $stnt = $db->query("select * from planta");
+                    $plantal = $planta;
+                    $stnt = $db->query("select * from planta where nomeCientifico = '".$plantal."' ");
                     while($data = $stnt->fetch(PDO::FETCH_OBJ)){
 
                          $this->Cell(70,65,$data->nomeCientifico,1,0,'C');
@@ -40,11 +46,10 @@ $pdf-> AliasNbPages();
 $pdf->AddPage('P','A4',0);
 $pdf->headerTable();
 
-$pdf->viewTable($db);
+$pdf->viewTable($db, $planta);
 $pdf->Output();
-
  
 
-
+?>
 
 

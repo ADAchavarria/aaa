@@ -11,7 +11,7 @@ $(document).ready(function(){
 
       $("#fotosModal").empty();
 			$('#add_data_Modal').modal('show');
-			$("#qrCodeModal").html("<img src='"+res.qrcode+"'/><hr/>");
+			$("#qrCodeModal").html("<img src='"+res.qrcode+"'/>");
       $("#qrcodeInput").val(res.qrcode);
       $("#contentModal").html(res.content);
       $("#descricaoInput").val(res.content);
@@ -66,13 +66,7 @@ $(document).ready(function(){
            else  
            { 
 
-            /*var srcImage ="";
-            $("#fotosModal img").each(function(index, value) {
-              console.log($(this).outerHTML);
-            });
-
-console.log(srcImage);*/
-console.log($("#fotosModal").html());
+           
               $.ajax({  
                      url:"insert.php",  
                      method:"POST",  
